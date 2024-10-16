@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AriadnaRamirez_502-A</title>
+    <!--Aqui referencias a un estilo de fuentes de letra en google-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!--Inicio de la hoja de estilos por mientras por que no se si se podia hacer css -->
+    <style>
+        body {
+            background-color: rgb(255, 243, 199);
+        }
+
+        .letra {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            /*definir una medida exacta porque ya incluye padding borde etc*/
+            font-family: "Raleway", sans-serif;
+            /*la letra sera la fuente cargada*/
+        }
+
+        .conte1 {
+            display: flex;
+            /*como es flexible es mas facil colocarlos en filas o columnas*/
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            min-height: 70%;
+        }
+
+        .contef {
+            display: flex;
+            flex-direction: row;
+            /*colocado en fila */
+            align-items: center;
+            width: 50%;
+            justify-content: center;
+        }
+
+        .contef2 {
+            display: flex;
+            flex-direction: row;
+            /*colocado en fila pero con letra mas grande  y alineado a la derecha */
+            align-items: left;
+            width: 100%;
+            height: 70%;
+            justify-content: flex-start;
+            /*alinear al principio del contedor*/
+            font-size: 23px;
+            color: rgb(33, 2, 21);
+        }
+
+        .cuasb {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            width: 70%;
+            max-height: 400px;
+            height: 25px;
+            justify-content: center;
+            background-color: rgb(215, 215, 247);
+            border: 1px solid rgb(117, 92, 188);
+            margin: 1px 0;
+            font-size: 17px;
+            padding: 1px;
+        }
+
+        .cua1,
+        .cua2,
+        .cua3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+            height: 150px;
+            justify-content: center;
+            border: 1px solid rgb(196, 101, 123);
+            margin: 10px;
+            font-family: "Raleway", sans-serif;
+            background-color: rgb(252, 129, 158);
+            font-size: 25px;
+
+        }
+
+        .cuadsali {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            width: 75%;
+            height: 125px;
+            justify-content: center;
+            background-color: rgb(215, 215, 247);
+            border: 0.7px;
+            margin: 5px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .cuadsalim {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            width: 75%;
+            height: 125px;
+            justify-content: center;
+            background-color: rgb(215, 215, 247);
+            border: 0.7px;
+            margin: 5px;
+            text-align: center;
+            /* Centrar el texto */
+            font-size: 12px;
+            /* Aumentar el tamaño de la fuente */
+        }
+
+        .tit {
+            font-size: 45px;
+            color: rgb(33, 2, 21);
+        }
+
+        .pp {
+            font-size: 22px;
+            color: rgb(33, 2, 21);
+        }
+
+        .table-container {
+            /*contendor de la tabla que se adpte y el contenido centrado*/
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: rgb(33, 2, 21);
+
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid rgb(78, 49, 128);
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            color: rgb(33, 2, 21);
+            margin-top: 23px;
+        }
+
+        .tabh {
+            background-color: rgb(47, 12, 10);
+            color: aliceblue;
+        }
+
+        .tabr {
+            background-color: rgb(56, 6, 26);
+            color: rgb(230, 237, 242);
+        }
+
+
+
+        .ipony {
+
+            position: fixed;
+            /* Fija la posición relativa a la ventana del navegador */
+            top: 20.8%;
+            /* Ajusta la distancia desde la parte superior de la ventana */
+            left: 75%;
+            /* Ajusta la distancia desde el lado izquierdo de la ventana */
+            
+        }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conte1">
+        <h1 class="tit">CONVERTIDOR DE NÚMEROS REALES A IEEE</h1>
+        <form>
+            <p class="pp">
+                Ingresa tu número en representación decimal
+                <input type="number" id="ni" step="any"> <!--con stepany se permiten numero decimales -->
+                <input type="button" value="Transformar" onclick="conv(); signito(); mantisa(); completo();" id="bttn">
+                <!--puedo llamar a mas de una funcion a la vez-->
+            </p>
+        </form>
+    </div>
+
+    <div class="conte1">
+        <form class="contef">
+            <p class="cua1">SIGNO
+                <input type="text" id="salisig" class="cuadsali" placeholder="El signo determinado por el primer bit">
+            </p>
+            <p class="cua2">EXPONENTE
+                <input type="text" id="saliexp" class="cuadsali" placeholder="El exponente">
+                <!--<span id="expDisplay"></span> -->
+            </p>
+            <p class="cua3">MANTISA
+                <input type="text" id="salim" class="cuadsalim" placeholder="Deben de ser 23 bits">
+            </p>
+        </form>
+    </div>
+
+    <div class="conte1">
+        <form>
+            <p class="contef2">
+                Número en Binario:
+                <input type="text" id="salinb" class="cuasb" placeholder="respuesta">
+            </p>
+        </form>
+    </div>
+    <div class="conte1">
+        <form>
+            <p class="contef2">
+                Numero de 32 bits:
+                <input type="text" id="ncomp" class="cuasb" placeholder="respuesta">
+                <!--Id identificador , class sus propiedades y placeholder textito transparecte antes de un resultado-->
+            </p>
+        </form>
+    </div>
+
+
+    <div class="title">Proceso de Conversión a Binario</div>
+
+    <div class="table-container">
+        <table>
+            <caption class="title">Parte Entera</caption>
+            <thead class="tabh">
+                <tr>
+                    <th>Valor</th>
+                    <th>Divisor</th> <!--aqui las columnas que tendra mi tabla-->
+                    <th>Cociente</th>
+                    <th>Resto</th>
+                </tr>
+            </thead>
+            <tbody id="integraCont" class="tabr">
+                <!--Es para integrar el contenido de la tabla-->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <caption class="title">Parte Fraccional</caption>
+            <thead class="tabh">
+                <tr>
+                    <th>Valor</th>
+                    <th>Multiplicador</th>
+                    <th>Producto</th>
+                    <th>Dígito</th>
+                </tr>
+            </thead>
+            <tbody id="integraTabf" class="tabr">
+                <!-- Integrar el contenido de la tabla de fraccion -->
+            </tbody>
+        </table>
+    </div>
+
+   <!-- <div class="ipony">
+        <img src="/home/ari/Escritorio/DISEÑO_WEB1/tareas/pinkieEG.png" width="500 px">
+    </div> 
+    no deje fija la imagen -->
+
+
+    <script>
+
+        //inicio de codigo js
+
+        function signito() {
+            //const por que son valores que ya no se cambiaran o quedaran fijos
+            const entra = document.getElementById("ni"); //entra es numero ingresado ni
+            const sali = document.getElementById("salisig");
+            let ss;//let porque esta a posibles cambios
+            //hacer mi comparacion para saber si escribir + o -
+            if (entra.value >= 0) {
+                ss = "+";
+            } else {
+                ss = "-";
+            }
+
+            //const sali quetendra el valor de ss e ira al cuadro con el id salisig
+            sali.value = ss;
+        }
+        //mantisa calculo
+
+        function mantisa() {
+            const entrada = document.getElementById('ni');
+            const salida = document.getElementById('salim');
+
+            let nd = parseFloat(entrada.value);
+            //rbin o resultado binario tiene el valor binario de la parte entera
+            let rbin = convertirDAB(Math.floor(nd));
+            // volver a llamar a mi función para convertir mi parte decimal a binario
+            //antes a numeroo decimal nd ke restamos en entero
+            let parteDecimal = nd - Math.floor(nd);
+            let binarioDecimal = convertirDecimalABinario(parteDecimal);
+
+            // para la mantisa
+            let mantisa = rbin.replace(/^[01]/, '') + binarioDecimal; // quite el número del primer bit y juntar con la parte decimal 
+            mantisa = mantisa.padEnd(23, '0'); // Rellenar con ceros hasta 23 bits
+
+            salida.value = mantisa.slice(0, 23);
+        }
+
+        function completo() {
+            const entrada = document.getElementById('ni');
+            const salida = document.getElementById('ncomp');//salida a numero completo
+            const expDisplay = document.getElementById('saliexp');//salida a exponente
+
+            let nd = parseFloat(entrada.value); //leer el numero ingresado
+            let signo = nd >= 0 ? '0' : '1'; //ver signo para determinar le valor del primer bit
+
+            let exponente = 0; //inicializar el exponente en cero
+            if (nd !== 0) {
+                let parteEntera = Math.floor(Math.abs(nd));
+                let parteDecimal = Math.abs(nd) - parteEntera;
+
+                let rbin = convertirDAB(parteEntera);
+                rbin += "." + convertirDecimalABinario(parteDecimal);
+
+                if (parteEntera > 0) {
+                    exponente = rbin.indexOf('.') - 1;//se busca en la cadena el punto y se le resta uno del total
+                } else {
+                    let decimalIndex = rbin.indexOf('.') + 1;
+                    while (decimalIndex < rbin.length && rbin[decimalIndex] === '0') {
+                        decimalIndex++;
+                        exponente--;
+                    }
+                }
+            }
+
+            //el exponente se le suma 127 con.tostring(2) convertimos a binario 
+            //pad start asegura que la cadena generada sea de 8 bits si falta rellena con ceros por la izq
+            let expFinal = (exponente + 127).toString(2).padStart(8, '0');
+
+            //para la mantisa llamamos a la funcion de binarios redondeando numero decimal al entero mas cercano hacia abajo
+            //con replace buscamos el primer digito que puede ser 0 oo 1 y lo borramos
+            let mantisa = convertirDAB(Math.abs(Math.floor(nd))).replace(/^[01]/, '');
+            let parteDecimal = Math.abs(nd) - Math.floor(Math.abs(nd));
+            let binarioDecimal = convertirDecimalABinario(parteDecimal);
+            mantisa = mantisa + binarioDecimal;
+            mantisa = mantisa.padEnd(23, '0').slice(0, 23);
+            //padend rellena con 0 por la derecha si no se acompletan los 3 digitos
+
+            let resultado32Bits = signo + expFinal + mantisa; //juntamos todo para nuestro resultado final
+            salida.value = resultado32Bits;
+            saliexp.value = `2^${exponente}`; // Mostrar el exponente calculado
+            expDisplay.innerText = `2^${exponente}`; // Mostrar en el formato 2^exponente
+
+
+        }
+
+        function updateIntegerTable(steps) {
+            const tableBody = document.getElementById('integraCont');
+            tableBody.innerHTML = ""; //  filas anteriores
+
+            steps.forEach(step => { //creacion de los resultados en su respectiva fila
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${step.value}</td>
+                    <td>${step.divisor}</td>
+                    <td>${step.quotient}</td>
+                    <td>${step.remainder}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateFractionTable(steps) {
+            const tableBody = document.getElementById('integraTabf');
+            tableBody.innerHTML = ""; // Limpiar filas anteriores
+
+            steps.forEach(step => {
+                const row = document.createElement('tr'); //lo mismo de insertar las filas 
+                row.innerHTML = `
+                    <td>${step.value.toFixed(14)}</td>
+                    <td>${step.multiplier}</td>
+                    <td>${step.product.toFixed(14)}</td>
+                    <td>${step.digit}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function convertirDAB(nd) {
+            let divisor = 2; //divisor 2 por ser binarios
+            let steps = []; //nuestrio vector de pasos 
+            while (nd >= 2) { //mientras nuestro numero decimal se aun mayor o igual a dos seguiremos calculando 
+                let quotient = Math.floor(nd / divisor);// generamos cociente eliminando la parte decimal
+                let remainder = nd % divisor;//generamos residuo
+                steps.push({ value: nd, divisor, quotient, remainder });//meter a la pila numerod, divisor cociente,residuo
+                nd = quotient; //guardamos nuestro nuevo valor nd
+            }
+            steps.push({ value: nd, divisor, quotient: 0, remainder: nd });//al final la pila queda asi
+            updateIntegerTable(steps);
+
+            return steps.map(step => step.remainder).reverse().join("");
+            //map para crear un nuevo vector
+            //indicamos que toma cada elemeto y devuelve su valor la salida al reves y convertimos a texto
+        }
+
+        function convertirDecimalABinario(decimal) {
+            let binario = "";
+            let precision = 10;
+            let steps = [];
+            while (precision-- > 0 && decimal !== 0) {
+                let product = decimal * 2;
+                let digit = Math.floor(product);
+                steps.push({ value: decimal, multiplier: 2, product, digit });
+                binario += digit.toString();
+                decimal = product - digit;
+            }
+            updateFractionTable(steps);
+            return binario;
+        }
+
+        function conv() {
+            const entrada = document.getElementById('ni');
+            const salida = document.getElementById('salinb');
+            let nd = parseFloat(entrada.value);
+
+            if (isNaN(nd)) {
+                alert('Ingresa un número válido');
+                return;
+            }
+
+
+
+
+            const parteEntera = Math.floor(nd);
+            const parteDecimal = nd - parteEntera;
+            const enteroBinario = convertirDAB(parteEntera);
+            const decimalBinario = convertirDecimalABinario(parteDecimal);
+
+            salida.value = `${enteroBinario}.${decimalBinario}`;
+
+
+        }
+    </script>
+</body>
+
+</html>
